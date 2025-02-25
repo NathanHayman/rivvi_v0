@@ -1,0 +1,64 @@
+{
+    "agentId": "agent_a988db1adeafc27e1352327b30",
+    "agentName": "[SEMG] Confirmations",
+    "variables": {
+        // ? The `patient` variables exist for every campaign
+        "patient": {
+            "first_name": "John", // * used in call dialogue
+            "last_name": "Doe", // * not used in call dialogue
+            "dob": "07/16/1991", // * used to create `is_minor` variable
+            "is_minor": "FALSE", // * used in call dialogue
+            "phone": "+18303588259" // * used to dispatch the call
+        },
+        // ? The `campaign` variables are specific to this campaign
+        "campaign": {
+            "appt_date": "Friday, February 7, 2025", // * used in call dialogue
+            "appt_time": "2:00 PM", // * used in call dialogue
+            "appt_type": "Office Visit 15 Min", // * used in call dialogue
+            "appt_provider": "Pullamaraju MD, Swati", // * used in call dialogue
+            "appt_location": "Alpharetta" // * used in call dialogue
+        }
+    },
+    "post_call": {
+        "call_id": "call_7a4db434d328fd07ede35eb49da",
+        "call_type": "phone_call",
+        "call_status": "completed",
+        "call_duration": 15,
+        "call_direction": "outbound",
+        "call_to_number": "+18303588259",
+        "call_from_number": "+18303588259",
+        "call_recording_url": "https://dxc03zgurdly9.cloudfront.net/call_7a4db434dfg3fd07ede35eb49da/recording.wav",
+        /**
+         * ^ The `analysis` object contains the results of the call analysis.
+         * ^ The `standard` object contains the results of the call analysis from Retell AI.
+         * ^ The `campaign` object contains the results of the call analysis from the campaign.
+         */
+        "analysis": {
+            "standard": {
+                // * These variables come from Retell AI by default
+                "transcript": "Transcript",
+                "call_summary": "Call summary",
+                "user_sentiment": "Positive",
+                "in_voicemail": false,
+                "call_successful": true,
+                "agent_task_completion_rating": "Complete",
+                "call_completion_rating": "Complete",
+                // * These variables are created by us for each agent (we use these for all campaigns)
+                "callback_requested": false,
+                "callback_date_time": "N/A",
+                "transferred": false,
+                "transfer_reason": "N/A",
+                "patient_questions": "N/A",
+                "patient_reached": true,
+                "detected_ai": false,
+                "notes": "The user initially had difficulty hearing the agent but confirmed the appointment successfully."
+            },
+            // ^ The `campaign` variables are specific to this campaign
+            "campaign": {
+                "appt_confirmed": true, // * MAIN KPI FOR CAMPAIGN
+                "appointment_status": "CONFIMED", // * This sets the status of the appointment (CONFIRMED, CANCELLED, etc.)
+                "provided_special_reminders": true // * For certain `appt_type`s, we must provide special reminders
+            }
+        }
+    }
+}

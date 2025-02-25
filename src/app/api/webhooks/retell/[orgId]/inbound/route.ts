@@ -1,0 +1,13 @@
+export async function POST(req: Request) {
+  try {
+    // 1. Get the `from_number` (patient) & the `to_number` (organization) from the request
+    // ....
+    // 2. Search for the patient by `from_number`
+    // ....
+    // 3. If no patient is found....
+    // ....
+  } catch (error) {
+    console.error(error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+}
